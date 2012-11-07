@@ -1,0 +1,29 @@
+{
+  "name": "roller",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">= 0.6.17",
+    "npm": "1.1.x"
+  },
+  "dependencies": {
+    "client-sessions": ">= 0.0.9",
+    "connect": ">= 2.5.4",
+    "express": ">= 2.5.11",
+    "jade": ">= 0.27.2",
+    "request": "git://github.com/mikeal/request.git",
+    "nconf": "git://github.com/flatiron/nconf.git",
+    "requirejs": ">= 2.1.0",
+    "hiredis": "0.1.14",
+    "redis": "0.7.2",
+    "express-persona": "0.0.7"
+  },
+  "devDependencies": {
+    "mocha": ">= 1.4.2",
+    "nock": ">= 0.13.4",
+    "should": ">= 1.1.1"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}

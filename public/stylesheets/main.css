@@ -1,0 +1,234 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Main styling */
+html, body {
+    height: 100%;
+    position: relative;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('../fonts/Oswald-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #0f0f0f;
+    font-family: Arial;
+}
+
+header {
+    background-color: #1a1a1a;
+    box-shadow: #0c0c0c 1px 1px 3px;
+    font-family: 'Oswald';
+    height: 100%;
+    position: fixed;
+    width: 70px;
+    z-index: 2;
+}
+
+header li {
+    background-color: #0f0f0f;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 1px solid #1d1d1d;
+    border-radius: 100px;
+    box-shadow: inset #0b0b0b 0 0 3px;
+    cursor: pointer;
+    height: 50px;
+    margin: 10px;
+    width: 50px;
+}
+
+#feed {
+    background-image: url('/images/feed.png');
+}
+
+#add-image {
+    background-image: url('/images/photo.png');
+}
+
+#add-text {
+    background-image: url('/images/text.png');
+}
+
+#logout {
+    background-image: url('/images/logout.png');
+}
+
+header li:hover {
+    background-color: #eee;
+    border: 1px solid transparent;
+    box-shadow: none;
+}
+
+.wrapper {
+    margin-left: 80px;
+}
+
+#rollers > li {
+    background-color: #1a1a1a;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: #0c0c0c 1px 1px 3px;
+    margin-bottom: 10px;
+    min-height: 140px;
+    max-width: 450px;
+    min-width: 220px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    position: relative;
+    width: auto;
+}
+
+#rollers > li span {
+    color: #aaa;
+    display: block;
+    font-size: 16px;
+    line-height: 23px;
+    overflow: hidden;
+    padding: 5px 10px;
+    text-overflow: ellipsis;
+    text-shadow: #000 1px 1px 1px;
+}
+
+#rollers > li img {
+    max-width: 440px;
+}
+
+#rollers > li .mood {
+    background-repeat: no-repeat;
+    border-bottom-right-radius: 10px;
+    height: 57px;
+    margin: 0 0 10px;
+    width: 57px;
+}
+
+p.meta {
+    color: #444;
+    font-size: 12px;
+    font-style: italic;
+    padding: 10px 0 0 10px;
+}
+
+.actions {
+    background-color: rgba(30, 30, 30, 0.86);
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 20px;
+    box-shadow: inset #0b0b0b 1px 0 2px;
+    bottom: -100px;
+    cursor: pointer;
+    height: 90px;
+    padding: 20px 10px 10px 10px;
+    position: absolute;
+    right: 0;
+    width: 40px;
+    z-index: 2;
+}
+
+@keyframes slideup {
+    from {
+        bottom: -100px;
+    }
+
+    to {
+        bottom: 0;
+    }
+}
+
+.actions.on {
+    animation-duration: 500ms;
+    animation-name: slideup;
+    -webkit-transition-duration: 500ms;
+    -webkit-transition-animation-name: slideup;
+    bottom: 0;
+}
+
+.actions:hover {
+    background-color: rgba(46, 46, 46, 0.86);
+    box-shadow: none;
+}
+
+.actions li {
+    background-color: #111;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 1px solid #1d1d1d;
+    border-radius: 100px;
+    box-shadow: inset #0b0b0b 0 0 3px;
+    height: 30px;
+    margin-bottom: 7px;
+    padding: 5px;
+    width: 30px;
+}
+
+.actions li.heart {
+    background-image: url('/images/heart.png');
+    background-position: 50% 65%;
+}
+
+.actions li.repost {
+    background-image: url('/images/repost.png');
+    background-position: 49% 50%;
+}
+
+.actions li:hover {
+    background-color: #eee;
+    border: 1px solid transparent;
+    box-shadow: none;
+}
+
+@media only screen and (max-width: 330px) and (orientation:portrait) {
+    #rollers > li span {
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
