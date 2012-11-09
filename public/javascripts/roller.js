@@ -6,10 +6,12 @@ define(['jquery'],
   var rollerList = $('#rollers');
 
   var generateRoller = function(data) {
-    var roller = $('<li><div class="mood" style=""></div><div class="content"></div>' +
+    var roller = $('<li class="post-item" data-id=""><div class="mood" style=""></div><div class="content"></div>' +
       '<p class="meta"></p><div class="actions"><ol><li class="heart"></li></ol></li>');
 
     roller.find('.mood').attr('style', 'background-image: url(' + data.mood + ')');
+    roller.attr('data-id', data.id);
+
     if (data.type === 'image') {
       var img = $('<img src="">');
       img.attr('src', data.message);
@@ -53,16 +55,18 @@ define(['jquery'],
       });
     },
 
-    add: function(self) {
+    delete: function(self) {
       $.ajax({
-        url: self.attr('action'),
-        type: 'POST',
-        data: self.serialize(),
+        url: '/roller',
+        type: 'DELETE',
+        data: { id: self.data('id') },
         dataType: 'json',
         cache: false
       }).done(function(data) {
-        generateRoller(data.roller);
+
       });
+
+      self.remove();
     }
   };
 

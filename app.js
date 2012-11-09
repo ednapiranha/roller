@@ -24,7 +24,7 @@ require('express-persona')(app, {
 });
 
 // routes
-require("./routes")(app, client, isLoggedIn);
+require("./routes")(app, client, nconf, isLoggedIn);
 
 app.get('/404', function(req, res, next){
   next();

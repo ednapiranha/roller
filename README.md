@@ -16,6 +16,10 @@ Install node by using brew or through the website http://nodejs.org/#download
 
 > cp local.json-dist local.json
 
+Create a bucket on Amazon S3 and get your key, secret and bucket name
+
+Apply S3 info into local.json
+
 > npm install
 
 Run the site

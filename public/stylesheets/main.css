@@ -66,7 +66,7 @@ body {
 }
 
 header {
-    background-color: #1a1a1a;
+    background-image: url('/images/background.png');
     box-shadow: #0c0c0c 1px 1px 3px;
     font-family: 'Oswald';
     height: 100%;
@@ -112,10 +112,11 @@ header li:hover {
 
 .wrapper {
     margin-left: 80px;
+    position: relative;
 }
 
 #rollers > li {
-    background-color: #1a1a1a;
+    background-color: #171717;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     box-shadow: #0c0c0c 1px 1px 3px;
@@ -220,15 +221,48 @@ p.meta {
     background-position: 49% 50%;
 }
 
+.actions li.delete {
+    background-image: url('/images/delete.png');
+    background-position: 49% 50%;
+}
+
 .actions li:hover {
     background-color: #eee;
     border: 1px solid transparent;
     box-shadow: none;
 }
 
+#roller-form {
+    background-image: url('/images/background.png');
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: #0e0e0e 0 10px 5px;
+    display: none;
+    height: 200px;
+    left: 80px;
+    max-width: 410px;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: auto;
+    z-index: 3;
+}
+
+#roller-form textarea {
+    border: 1px solid #111;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 1%;
+    width: 95%;
+}
+
 @media only screen and (max-width: 330px) and (orientation:portrait) {
     #rollers > li span {
         font-size: 14px;
         line-height: 21px;
+    }
+
+    #roller-form {
+        max-width: 185px;
     }
 }

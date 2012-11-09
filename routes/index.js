@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(app, client, isLoggedIn) {
+module.exports = function(app, client, nconf, isLoggedIn) {
   var roller = require('../lib/roller');
 
   app.get('/', function(req, res) {
@@ -26,7 +26,13 @@ module.exports = function(app, client, isLoggedIn) {
   });
 
   app.post('/roller', function(req, res) {
-    roller.add(req, client, function(err, roller) {
+    roller.add(req, res, client, nconf, function(err, roller) {
+      res.redirect('/');
+    });
+  });
+
+  app.delete('/roller', function(req, res) {
+    roller.delete(req, client, function(err, roller) {
       if (err) {
         res.status(500);
         res.json({
@@ -34,8 +40,8 @@ module.exports = function(app, client, isLoggedIn) {
         });
       } else {
         res.json({
-          roller: roller
-        });
+          message: 'deleted'
+        })
       }
     });
   });

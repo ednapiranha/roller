@@ -20,12 +20,11 @@ html
           li#login
 
     .wrapper
-      form(method='post', action='/roller', id='roller-form')
-        input(type='text', name='message')
+      form(method='post', action='/roller', id='roller-form', enctype='multipart/form-data')
+        input(type='file', name='message')
         select(name='type')
           option(value='text') Text
           option(value='image') Image
-        input(type='hidden', name='type', 'text')
         select(name='mood')
           option(value='/images/mood-1.png') Calm
           option(value='/images/mood-2.png') Happy
