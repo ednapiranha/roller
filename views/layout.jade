@@ -11,24 +11,24 @@ html
   body
     header
       ol
-        li#feed
+        li#feed(title='Feed')
         if session.email
-          li#add-image
-          li#add-text
-          li#logout
+          li#add-image(title='Upload image')
+          li#add-text(title='Add text')
+          li#liked(title='View liked posts')
+          li#logout(title='Log out')
         else
-          li#login
+          li#login(title='Log in')
 
     .wrapper
       form(method='post', action='/roller', id='roller-form', enctype='multipart/form-data')
-        input(type='file', name='message')
+        input(type='file', name='message', size='15')
         select(name='type')
           option(value='text') Text
           option(value='image') Image
-        select(name='mood')
-          option(value='/images/mood-1.png') Calm
-          option(value='/images/mood-2.png') Happy
         button(type='submit') Add
+        a(class='close') X
+      h1 Recent
       ol#rollers
 
       #footer

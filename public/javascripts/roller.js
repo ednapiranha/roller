@@ -6,8 +6,9 @@ define(['jquery'],
   var rollerList = $('#rollers');
 
   var generateRoller = function(data) {
-    var roller = $('<li class="post-item" data-id=""><div class="mood" style=""></div><div class="content"></div>' +
-      '<p class="meta"></p><div class="actions"><ol><li class="heart"></li></ol></li>');
+    var roller = $('<li class="post-item" data-id=""><p class="meta"></p>' +
+      '<div class="content"></div>' +
+      '<div class="actions"><ol><li class="heart"></li></ol></li>');
 
     roller.find('.mood').attr('style', 'background-image: url(' + data.mood + ')');
     roller.attr('data-id', data.id);
@@ -22,11 +23,8 @@ define(['jquery'],
       roller.find('.content').html(msg);
     }
 
-    var posted = 'Posted by ' + data.author;
+    var posted = 'Posted by <img src="' + data.gravatar + '">';
     roller.find('.meta').html(posted);
-
-    // TODO: check if already liked and add 'on' to heart
-
 
     var actionItem = $('<li class=""></li>');
 
@@ -34,6 +32,10 @@ define(['jquery'],
       actionItem.addClass('delete');
     } else {
       actionItem.addClass('repost');
+    }
+
+    if (data.isLiked) {
+      roller.find('.heart').addClass('on');
     }
 
     roller.find('.actions ol').append(actionItem);
@@ -44,6 +46,20 @@ define(['jquery'],
     recent: function() {
       $.ajax({
         url: '/recent',
+        type: 'GET',
+        dataType: 'json',
+        cache: false
+      }).done(function(data) {
+        var rollers = data.rollers;
+        for (var i = 0; i < rollers.length; i ++) {
+          generateRoller(rollers[i]);
+        }
+      });
+    },
+
+    likes: function() {
+      $.ajax({
+        url: '/likes',
         type: 'GET',
         dataType: 'json',
         cache: false
@@ -67,6 +83,32 @@ define(['jquery'],
       });
 
       self.remove();
+    },
+
+    clear: function() {
+      rollerList.empty();
+    },
+
+    like: function(post) {
+      $.ajax({
+        url: '/like/' + parseInt(post.data('id'), 10),
+        type: 'POST',
+        dataType: 'json',
+        cache: false
+      }).done(function(data) {
+        post.find('.heart').addClass('on');
+      });
+    },
+
+    unlike: function(post) {
+      $.ajax({
+        url: '/like/' + parseInt(post.data('id'), 10),
+        type: 'DELETE',
+        dataType: 'json',
+        cache: false
+      }).done(function(data) {
+        post.find('.heart').removeClass('on');
+      });
     }
   };
 

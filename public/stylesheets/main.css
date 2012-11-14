@@ -54,21 +54,20 @@ html, body {
 }
 
 @font-face {
-    font-family: 'Oswald';
-    src: url('../fonts/Oswald-Regular-webfont.woff') format('woff');
+    font-family: 'League Gothic';
+    src: url('../fonts/League_Gothic-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    background-color: #0f0f0f;
+    background-color: #000;
     font-family: Arial;
 }
 
 header {
     background-image: url('/images/background.png');
     box-shadow: #0c0c0c 1px 1px 3px;
-    font-family: 'Oswald';
     height: 100%;
     position: fixed;
     width: 70px;
@@ -76,7 +75,7 @@ header {
 }
 
 header li {
-    background-color: #0f0f0f;
+    background-color: #000;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     border: 1px solid #1d1d1d;
@@ -92,6 +91,10 @@ header li {
     background-image: url('/images/feed.png');
 }
 
+#liked {
+    background-image: url('/images/heart.png');
+}
+
 #add-image {
     background-image: url('/images/photo.png');
 }
@@ -104,6 +107,11 @@ header li {
     background-image: url('/images/logout.png');
 }
 
+.heart.on {
+    background-color: #a10b40;
+    border: 1px solid #e4bfde;
+}
+
 header li:hover {
     background-color: #eee;
     border: 1px solid transparent;
@@ -113,6 +121,14 @@ header li:hover {
 .wrapper {
     margin-left: 80px;
     position: relative;
+}
+
+h1 {
+    color: #929ea0;
+    font-family: 'League Gothic';
+    font-size: 50px;
+    margin: 5px 0;
+    text-transform: uppercase;
 }
 
 #rollers > li {
@@ -157,7 +173,13 @@ p.meta {
     color: #444;
     font-size: 12px;
     font-style: italic;
-    padding: 10px 0 0 10px;
+    padding: 10px 0 15px 10px;
+}
+
+p.meta img {
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 60px;
 }
 
 .actions {
@@ -236,9 +258,9 @@ p.meta {
     background-image: url('/images/background.png');
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    box-shadow: #0e0e0e 0 10px 5px;
+    box-shadow: #000 0 10px 5px;
     display: none;
-    height: 200px;
+    height: 150px;
     left: 80px;
     max-width: 410px;
     padding: 20px;
@@ -248,12 +270,43 @@ p.meta {
     z-index: 3;
 }
 
-#roller-form textarea {
-    border: 1px solid #111;
+#roller-form input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 370px;
+}
+
+#roller-form select {
+    display: none;
+}
+
+#roller-form button {
+    background-color: #3eac30;
+    border: 3px solid #fff;
     border-radius: 5px;
+    bottom: 20px;
+    clear: both;
+    color: #fff;
+    cursor: pointer;
+    display: block;
     font-size: 20px;
-    padding: 1%;
-    width: 95%;
+    padding: 5px;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+#roller-form .close {
+    background-color: #f00;
+    border: 2px solid #fff;
+    border-radius: 100px;
+    bottom: -10px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    padding: 2px 7px;
+    position: absolute;
+    right: -10px;
 }
 
 @media only screen and (max-width: 330px) and (orientation:portrait) {
@@ -263,6 +316,10 @@ p.meta {
     }
 
     #roller-form {
-        max-width: 185px;
+        width: 185px;
+    }
+
+    #roller-form input[type="text"] {
+        width: 170px;
     }
 }

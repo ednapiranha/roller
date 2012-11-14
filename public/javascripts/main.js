@@ -14,8 +14,6 @@ define(['jquery', 'persona', 'roller'],
   var body = $('body');
   var form = $('form');
 
-  roller.recent();
-
   body.on('click', function(ev) {
     var self = $(ev.target);
 
@@ -59,6 +57,48 @@ define(['jquery', 'persona', 'roller'],
       case self.hasClass('delete'):
         roller.delete(self.closest('.post-item'));
         break;
+
+      // close form
+      case self.hasClass('close'):
+        form.slideUp();
+        break;
+
+      // feed
+      case self.is('#feed'):
+        document.location.hash = '/';
+        break;
+
+      // likes
+      case self.is('#liked'):
+        document.location.hash = '/likes';
+        break;
+
+      // like / unlike
+      case self.hasClass('heart'):
+        if (self.hasClass('on')) {
+          roller.unlike(self.closest('.post-item'));
+        } else {
+          roller.like(self.closest('.post-item'));
+        }
+        break;
     }
+  });
+
+  var checkUrl = function() {
+    var hash = document.location.hash;
+
+    roller.clear();
+
+    if (hash.indexOf('likes') > -1) {
+      roller.likes();
+    } else {
+      roller.recent();
+    }
+  };
+
+  checkUrl();
+
+  $(window).bind('hashchange', function() {
+    checkUrl();
   });
 });

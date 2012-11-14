@@ -16,7 +16,6 @@ var req = {
   },
   body: {
     author: 'test@test.com',
-    mood: '/images/happy.png',
     message: 'This is a post',
     type: 'text'
   }
