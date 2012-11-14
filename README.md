@@ -1,6 +1,6 @@
 # Roller
 
-A micro micro mood blog.
+A micro micro blog.
 
 ## Installation instructions
 
