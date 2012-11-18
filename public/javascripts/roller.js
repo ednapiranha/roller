@@ -79,10 +79,8 @@ define(['jquery'],
         dataType: 'json',
         cache: false
       }).done(function(data) {
-
+        self.remove();
       });
-
-      self.remove();
     },
 
     clear: function() {

@@ -103,7 +103,7 @@ header li {
     background-image: url('/images/text.png');
 }
 
-#logout {
+#logout, #login {
     background-image: url('/images/logout.png');
 }
 
