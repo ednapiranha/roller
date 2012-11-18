@@ -18,7 +18,8 @@
     "redis": "0.7.2",
     "express-persona": "0.0.7",
     "knox": "0.4.1",
-    "gravatar": "1.0.6"
+    "gravatar": "1.0.6",
+    "knox-mpu": ">= 0.0.4"
   },
   "devDependencies": {
     "mocha": ">= 1.4.2",
