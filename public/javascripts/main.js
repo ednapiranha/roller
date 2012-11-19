@@ -43,14 +43,14 @@ define(['jquery', 'persona', 'roller'],
       case self.is('#add-text'):
         form.find('input[name="message"]').get(0).type = 'text';
         form.find('select[name="type"]').val('text');
-        form.slideDown();
+        form.addClass('on').removeClass('off');
         break;
 
       // trigger image post
       case self.is('#add-image'):
         form.find('input[name="message"]').get(0).type = 'file';
         form.find('select[name="type"]').val('image');
-        form.slideDown();
+        form.addClass('on').removeClass('off');
         break;
 
       // delete post
@@ -60,7 +60,7 @@ define(['jquery', 'persona', 'roller'],
 
       // close form
       case self.hasClass('close'):
-        form.slideUp();
+        form.removeClass('on').addClass('off');
         break;
 
       // feed

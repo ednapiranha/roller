@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "name": "Roller",
+  "default_locale": "en-US",
+  "icons": {
+    "72": "/images/logo-72.png",
+    "114": "/images/logo-114.png",
+    "128": "/images/logo-128.png"
+  },
+  "description": "A micro micro blog",
+  "launch_path": "/",
+  "developer": {
+    "url": "http://roller.noodletalk.org",
+    "name": "Edna Piranha"
+  }
+}

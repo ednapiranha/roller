@@ -21,13 +21,14 @@ html
           li#login(title='Log in')
 
     .wrapper
-      form(method='post', action='/roller', id='roller-form', enctype='multipart/form-data')
-        input(type='file', name='message', size='15')
-        select(name='type')
-          option(value='text') Text
-          option(value='image') Image
-        button(type='submit') Add
-        a(class='close') X
+      if session.email
+        form(method='post', action='/roller', id='roller-form', enctype='multipart/form-data')
+          input(type='file', name='message', size='15')
+          select(name='type')
+            option(value='text') Text
+            option(value='image') Image
+          button(type='submit') Add
+          a(class='close') X
       h1 Recent
       ol#rollers
 
