@@ -146,6 +146,19 @@ h1 {
     width: auto;
 }
 
+#rollers > li:hover {
+    background-color: #222;
+}
+
+#rollers > li:hover p {
+    color: #888;
+}
+
+#rollers > li > a {
+    outline: hidden;
+    text-decoration: none;
+}
+
 #rollers > li span {
     color: #aaa;
     display: block;

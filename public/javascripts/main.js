@@ -91,6 +91,9 @@ define(['jquery', 'persona', 'roller'],
 
     if (hash.indexOf('likes') > -1) {
       roller.likes();
+    } else if (hash.indexOf('roller') > -1) {
+      var id = hash.split('/roller/')[1];
+      roller.detail(parseInt(id, 10));
     } else {
       roller.recent();
     }

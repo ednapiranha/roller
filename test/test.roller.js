@@ -41,7 +41,7 @@ describe('roller', function() {
     it('successfully adds a post', function(done) {
       roller.add(req, client, nconf, function(err, result) {
         if (err) {
-          console.error('error adding post: ', err);
+          throw new Error('error adding post: ', err);
         } else {
           should.exist(result);
           result.message.should.equal(req.body.message);
@@ -55,11 +55,11 @@ describe('roller', function() {
     it('successfully likes a post', function(done) {
       roller.add(req, client, nconf, function(err, result) {
         if (err) {
-          console.error('error adding post: ', err);
+          throw new Error('error adding post: ', err);
         } else {
           roller.like(req, client, function(err, resp) {
             if (err) {
-              console.error('error liking post: ', err);
+              throw new Error('error liking post: ', err);
             } else {
               resp.should.be.true;
             }
@@ -74,11 +74,11 @@ describe('roller', function() {
     it('successfully unlikes a post', function(done) {
       roller.add(req, client, nconf, function(err, result) {
         if (err) {
-          console.error('error adding post: ', err);
+          throw new Error('error adding post: ', err);
         } else {
           roller.unlike(req, client, function(err, resp) {
             if (err) {
-              console.error('error unliking post: ', err);
+              throw new Error('error unliking post: ', err);
             } else {
               resp.should.be.true;
             }
@@ -92,11 +92,11 @@ describe('roller', function() {
   it('successfully retrieves posts', function(done) {
     roller.add(req, client, nconf, function(err, result) {
       if (err) {
-        console.error('error adding post: ', err);
+        throw new Error('error adding post: ', err);
       } else {
         roller.recent(req, client, function(err, results) {
           if (err) {
-            console.error('error retrieving posts: ', err);
+            throw new Error('error retrieving posts: ', err);
           } else {
             should.exist(results);
             results.length.should.equal(1);
@@ -111,11 +111,11 @@ describe('roller', function() {
     req.body.id = 1;
     roller.delete(req, client, function(err, resp) {
       if (err) {
-        console.error('error deleting post');
+        throw new Error('error deleting post');
       } else {
         roller.recent(req, client, function(err, results) {
           if (err) {
-            console.error('error retrieving posts: ', err);
+            throw new Error('error retrieving posts: ', err);
           } else {
             results.length.should.equal(0);
           }

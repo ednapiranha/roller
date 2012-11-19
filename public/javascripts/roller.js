@@ -7,12 +7,13 @@ define(['jquery'],
 
   // Generates each roller post to the client after the ajax call returns the data
   var generateRoller = function(data) {
-    var roller = $('<li class="post-item" data-id=""><p class="meta"></p>' +
-      '<div class="content"></div>' +
-      '<div class="actions"><ol><li class="heart"></li></ol></li>');
+    var roller = $('<li class="post-item" data-id=""><a href="" class="roller-link">' +
+      '<p class="meta"></p><div class="content"></div>' +
+      '<div class="actions"><ol><li class="heart"></li></ol></a></li>');
 
     roller.find('.mood').attr('style', 'background-image: url(' + data.mood + ')');
     roller.attr('data-id', data.id);
+    roller.find('.roller-link').attr('href', '#/roller/' + parseInt(data.id, 10));
 
     if (data.type === 'image') {
       var img = $('<img src="">');
@@ -47,6 +48,20 @@ define(['jquery'],
     recent: function() {
       $.ajax({
         url: '/recent',
+        type: 'GET',
+        dataType: 'json',
+        cache: false
+      }).done(function(data) {
+        var rollers = data.rollers;
+        for (var i = 0; i < rollers.length; i ++) {
+          generateRoller(rollers[i]);
+        }
+      });
+    },
+
+    detail: function(id) {
+      $.ajax({
+        url: '/detail/' + id,
         type: 'GET',
         dataType: 'json',
         cache: false

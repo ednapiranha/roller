@@ -25,6 +25,21 @@ module.exports = function(app, client, nconf, isLoggedIn) {
     });
   });
 
+  app.get('/detail/:id', function(req, res) {
+    roller.detail(req, client, function(err, rollers) {
+      if (err) {
+        res.status(500);
+        res.json({
+          message: err.message
+        });
+      } else {
+        res.json({
+          rollers: rollers
+        });
+      }
+    });
+  });
+
   app.get('/likes', function(req, res) {
     roller.likes(req, client, function(err, rollers) {
       if (err) {
@@ -71,7 +86,7 @@ module.exports = function(app, client, nconf, isLoggedIn) {
   });
 
   app.post('/roller', function(req, res) {
-    roller.add(req, client, nconf, function(err, roller) {
+    roller.add(req, client, false, nconf, function(err, roller) {
       res.redirect('/');
     });
   });
