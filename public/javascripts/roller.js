@@ -5,6 +5,7 @@ define(['jquery'],
 
   var rollerList = $('#rollers');
 
+  // Generates each roller post to the client after the ajax call returns the data
   var generateRoller = function(data) {
     var roller = $('<li class="post-item" data-id=""><p class="meta"></p>' +
       '<div class="content"></div>' +

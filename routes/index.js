@@ -71,7 +71,7 @@ module.exports = function(app, client, nconf, isLoggedIn) {
   });
 
   app.post('/roller', function(req, res) {
-    roller.add(req, res, client, nconf, function(err, roller) {
+    roller.add(req, client, nconf, function(err, roller) {
       res.redirect('/');
     });
   });

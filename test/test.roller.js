@@ -14,6 +14,9 @@ var req = {
   session: {
     email: 'test@test.com'
   },
+  params: {
+    id: 1
+  },
   body: {
     author: 'test@test.com',
     message: 'This is a post',
@@ -36,7 +39,7 @@ describe('roller', function() {
 
   describe('add post', function() {
     it('successfully adds a post', function(done) {
-      roller.add(req, client, function(err, result) {
+      roller.add(req, client, nconf, function(err, result) {
         if (err) {
           console.error('error adding post: ', err);
         } else {
@@ -48,8 +51,46 @@ describe('roller', function() {
     });
   });
 
+  describe('like a post', function() {
+    it('successfully likes a post', function(done) {
+      roller.add(req, client, nconf, function(err, result) {
+        if (err) {
+          console.error('error adding post: ', err);
+        } else {
+          roller.like(req, client, function(err, resp) {
+            if (err) {
+              console.error('error liking post: ', err);
+            } else {
+              resp.should.be.true;
+            }
+            done();
+          });
+        }
+      });
+    });
+  });
+
+  describe('unlike a post', function() {
+    it('successfully unlikes a post', function(done) {
+      roller.add(req, client, nconf, function(err, result) {
+        if (err) {
+          console.error('error adding post: ', err);
+        } else {
+          roller.unlike(req, client, function(err, resp) {
+            if (err) {
+              console.error('error unliking post: ', err);
+            } else {
+              resp.should.be.true;
+            }
+            done();
+          });
+        }
+      });
+    });
+  });
+
   it('successfully retrieves posts', function(done) {
-    roller.add(req, client, function(err, result) {
+    roller.add(req, client, nconf, function(err, result) {
       if (err) {
         console.error('error adding post: ', err);
       } else {
@@ -68,14 +109,19 @@ describe('roller', function() {
 
   it('successfully deletes a post', function(done) {
     req.body.id = 1;
-    roller.delete(req, client);
-    roller.recent(req, client, function(err, results) {
+    roller.delete(req, client, function(err, resp) {
       if (err) {
-        console.error('error retrieving posts: ', err);
+        console.error('error deleting post');
       } else {
-        results.length.should.equal(0);
+        roller.recent(req, client, function(err, results) {
+          if (err) {
+            console.error('error retrieving posts: ', err);
+          } else {
+            results.length.should.equal(0);
+          }
+          done();
+        });
       }
-      done();
     });
   });
 });
