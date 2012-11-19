@@ -39,7 +39,7 @@ describe('roller', function() {
 
   describe('add post', function() {
     it('successfully adds a post', function(done) {
-      roller.add(req, client, nconf, function(err, result) {
+      roller.add(req, client, {}, nconf, function(err, result) {
         if (err) {
           throw new Error('error adding post: ', err);
         } else {
@@ -53,7 +53,7 @@ describe('roller', function() {
 
   describe('like a post', function() {
     it('successfully likes a post', function(done) {
-      roller.add(req, client, nconf, function(err, result) {
+      roller.add(req, client, {}, nconf, function(err, result) {
         if (err) {
           throw new Error('error adding post: ', err);
         } else {
@@ -72,7 +72,7 @@ describe('roller', function() {
 
   describe('unlike a post', function() {
     it('successfully unlikes a post', function(done) {
-      roller.add(req, client, nconf, function(err, result) {
+      roller.add(req, client, {}, nconf, function(err, result) {
         if (err) {
           throw new Error('error adding post: ', err);
         } else {
@@ -90,7 +90,7 @@ describe('roller', function() {
   });
 
   it('successfully retrieves posts', function(done) {
-    roller.add(req, client, nconf, function(err, result) {
+    roller.add(req, client, {}, nconf, function(err, result) {
       if (err) {
         throw new Error('error adding post: ', err);
       } else {

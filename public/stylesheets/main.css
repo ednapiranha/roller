@@ -65,6 +65,10 @@ body {
     font-family: Arial;
 }
 
+body[data-loggedin="true"] .actions {
+    display: block;
+}
+
 header {
     background-image: url('/images/background.png');
     box-shadow: #0c0c0c 1px 1px 3px;
@@ -202,12 +206,13 @@ p.meta img {
     box-shadow: inset #0b0b0b 1px 0 2px;
     bottom: -100px;
     cursor: pointer;
+    display: none;
     height: 90px;
     padding: 20px 10px 10px 10px;
     position: absolute;
     right: 0;
     width: 40px;
-    z-index: 2;
+    z-index: 3;
 }
 
 @keyframes slideup {

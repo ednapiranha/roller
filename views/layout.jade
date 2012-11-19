@@ -8,7 +8,7 @@ html
     link(rel='shortcut icon', href='/images/favicon.png')
     link(rel='stylesheet', href='/stylesheets/main.css')
 
-  body
+  body(data-loggedin='#{isLoggedIn}')
     header
       ol
         li#feed(title='Feed')

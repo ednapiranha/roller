@@ -7,13 +7,14 @@ define(['jquery'],
 
   // Generates each roller post to the client after the ajax call returns the data
   var generateRoller = function(data) {
-    var roller = $('<li class="post-item" data-id=""><a href="" class="roller-link">' +
+    var roller = $('<li class="post-item" data-id="">' +
+      '<a href="javascript:;" data-url="" class="roller-link">' +
       '<p class="meta"></p><div class="content"></div>' +
       '<div class="actions"><ol><li class="heart"></li></ol></a></li>');
 
     roller.find('.mood').attr('style', 'background-image: url(' + data.mood + ')');
     roller.attr('data-id', data.id);
-    roller.find('.roller-link').attr('href', '#/roller/' + parseInt(data.id, 10));
+    roller.find('.roller-link').attr('data-url', '/#/roller/' + parseInt(data.id, 10));
 
     if (data.type === 'image') {
       var img = $('<img src="">');
@@ -44,14 +45,23 @@ define(['jquery'],
     rollerList.prepend(roller);
   };
 
+  var remoteAction = function(url, type, data, callback) {
+    $.ajax({
+      url: url,
+      type: type,
+      data: data,
+      dataType: 'json',
+      cache: false
+    }).done(function(data) {
+      if (callback) {
+        callback(data);
+      }
+    });
+  };
+
   var self = {
     recent: function() {
-      $.ajax({
-        url: '/recent',
-        type: 'GET',
-        dataType: 'json',
-        cache: false
-      }).done(function(data) {
+      remoteAction('/recent', 'GET', {}, function(data) {
         var rollers = data.rollers;
         for (var i = 0; i < rollers.length; i ++) {
           generateRoller(rollers[i]);
@@ -60,12 +70,7 @@ define(['jquery'],
     },
 
     detail: function(id) {
-      $.ajax({
-        url: '/detail/' + id,
-        type: 'GET',
-        dataType: 'json',
-        cache: false
-      }).done(function(data) {
+      remoteAction('/detail/' + id, 'GET', {}, function(data) {
         var rollers = data.rollers;
         for (var i = 0; i < rollers.length; i ++) {
           generateRoller(rollers[i]);
@@ -74,12 +79,7 @@ define(['jquery'],
     },
 
     likes: function() {
-      $.ajax({
-        url: '/likes',
-        type: 'GET',
-        dataType: 'json',
-        cache: false
-      }).done(function(data) {
+      remoteAction('/likes', 'GET', {}, function(data) {
         var rollers = data.rollers;
         for (var i = 0; i < rollers.length; i ++) {
           generateRoller(rollers[i]);
@@ -88,13 +88,7 @@ define(['jquery'],
     },
 
     delete: function(self) {
-      $.ajax({
-        url: '/roller',
-        type: 'DELETE',
-        data: { id: self.data('id') },
-        dataType: 'json',
-        cache: false
-      }).done(function(data) {
+      remoteAction('/roller', 'DELETE', { id: self.data('id') }, function(data) {
         self.remove();
       });
     },
@@ -104,23 +98,13 @@ define(['jquery'],
     },
 
     like: function(post) {
-      $.ajax({
-        url: '/like/' + parseInt(post.data('id'), 10),
-        type: 'POST',
-        dataType: 'json',
-        cache: false
-      }).done(function(data) {
+      remoteAction('/like/' + parseInt(post.data('id'), 10), 'POST', {}, function(data) {
         post.find('.heart').addClass('on');
       });
     },
 
     unlike: function(post) {
-      $.ajax({
-        url: '/like/' + parseInt(post.data('id'), 10),
-        type: 'DELETE',
-        dataType: 'json',
-        cache: false
-      }).done(function(data) {
+      remoteAction('/like/' + parseInt(post.data('id'), 10), 'DELETE', {}, function(data) {
         post.find('.heart').removeClass('on');
       });
     }

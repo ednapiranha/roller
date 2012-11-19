@@ -6,7 +6,8 @@ module.exports = function(app, client, nconf, isLoggedIn) {
   app.get('/', function(req, res) {
     res.render('index', {
       pageType: 'index',
-      session: req.session
+      session: req.session,
+      isLoggedIn: !!req.session.email
     });
   });
 
