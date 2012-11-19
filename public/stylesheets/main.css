@@ -351,6 +351,10 @@ p.meta img {
         line-height: 21px;
     }
 
+    #rollers > li img {
+        max-width: 225px;
+    }
+
     #roller-form {
         width: 185px;
     }
