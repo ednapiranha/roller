@@ -8,9 +8,9 @@ Clone the repository
 
 > git clone git://github.com/ednapiranha/roller.git
 
-> curl http://npmjs.org/install.sh | sh
+Install node http://nodejs.org/#download
 
-Install node by using brew or through the website http://nodejs.org/#download
+Install redis via brew or here http://redis.io
 
 > cd roller
 
