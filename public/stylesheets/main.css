@@ -116,6 +116,11 @@ header li {
     border: 1px solid #e4bfde;
 }
 
+.repost.on {
+    background-color: #2b80ac;
+    border: 1px solid #72cbfa;
+}
+
 header li:hover {
     background-color: #eee;
     border: 1px solid transparent;
@@ -304,7 +309,7 @@ p.meta img {
     position: fixed;
     top: -200px;
     width: auto;
-    z-index: 3;
+    z-index: 5;
 }
 
 #roller-form.on {
@@ -316,9 +321,9 @@ p.meta img {
 }
 
 #roller-form.off {
-    animation-duration: 500ms;
+    animation-duration: 200ms;
     animation-name: formslideup;
-    -webkit-transition-duration: 500ms;
+    -webkit-transition-duration: 200ms;
     -webkit-transition-animation-name: formslideup;
     top: -200px;
 }

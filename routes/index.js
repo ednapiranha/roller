@@ -86,6 +86,36 @@ module.exports = function(app, client, nconf, isLoggedIn) {
     });
   });
 
+  app.post('/repost/:id', function(req, res) {
+    roller.repost(req, client, function(err, roller) {
+      if (err) {
+        res.status(500);
+        res.json({
+          message: err.message
+        });
+      } else {
+        res.json({
+          message: 'successfully reposted'
+        });
+      }
+    });
+  });
+
+  app.delete('/repost/:id', function(req, res) {
+    roller.unrepost(req, client, function(err, roller) {
+      if (err) {
+        res.status(500);
+        res.json({
+          message: err.message
+        });
+      } else {
+        res.json({
+          message: 'successfully unreposted'
+        });
+      }
+    });
+  });
+
   app.post('/roller', function(req, res) {
     roller.add(req, client, false, nconf, function(err, roller) {
       res.redirect('/');
