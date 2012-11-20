@@ -39,7 +39,7 @@ describe('roller', function() {
 
   describe('add post', function() {
     it('successfully adds a post', function(done) {
-      roller.add(req, client, {}, nconf, function(err, result) {
+      roller.add(req, client, nconf, function(err, result) {
         if (err) {
           throw new Error('error adding post: ', err);
         } else {
@@ -51,9 +51,25 @@ describe('roller', function() {
     });
   });
 
+  describe('add post with a link and an image', function() {
+    it('successfully adds a post', function(done) {
+      req.body.message = 'http://google.com test http://pics.org/cat.jpg';
+      roller.add(req, client, nconf, function(err, result) {
+        if (err) {
+          throw new Error('error adding post: ', err);
+        } else {
+          var rendered = '<a href="http://google.com">http://google.com</a> ' +
+            'test <img src="http://pics.org/cat.jpg">';
+          result.message.should.equal(rendered);
+        }
+        done();
+      });
+    });
+  });
+
   describe('like a post', function() {
     it('successfully likes a post', function(done) {
-      roller.add(req, client, {}, nconf, function(err, result) {
+      roller.add(req, client, nconf, function(err, result) {
         if (err) {
           throw new Error('error adding post: ', err);
         } else {
@@ -72,7 +88,7 @@ describe('roller', function() {
 
   describe('unlike a post', function() {
     it('successfully unlikes a post', function(done) {
-      roller.add(req, client, {}, nconf, function(err, result) {
+      roller.add(req, client, nconf, function(err, result) {
         if (err) {
           throw new Error('error adding post: ', err);
         } else {
@@ -90,7 +106,7 @@ describe('roller', function() {
   });
 
   it('successfully retrieves posts', function(done) {
-    roller.add(req, client, {}, nconf, function(err, result) {
+    roller.add(req, client, nconf, function(err, result) {
       if (err) {
         throw new Error('error adding post: ', err);
       } else {

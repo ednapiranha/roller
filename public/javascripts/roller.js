@@ -21,8 +21,7 @@ define(['jquery'],
       img.attr('src', data.message);
       roller.find('.content').html(img);
     } else {
-      var msg = $('<span></span>');
-      msg.text(data.message);
+      var msg = '<p>' + data.message + '</p>';
       roller.find('.content').html(msg);
     }
 

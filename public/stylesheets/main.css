@@ -150,6 +150,20 @@ h1 {
     width: auto;
 }
 
+#rollers li p {
+    color: #fff;
+    padding-left: 10px;
+}
+
+#rollers li p a {
+    color: #44c3cb;
+    text-decoration: none;
+}
+
+#rollers li p a:hover {
+    text-decoration: underline;
+}
+
 #rollers > li:hover {
     background-color: #222;
 }
