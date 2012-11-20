@@ -26,16 +26,15 @@ require('express-persona')(app, {
 // routes
 require("./routes")(app, client, nconf, isLoggedIn);
 
-app.get('/404', function(req, res, next){
+app.get('/404', function(req, res, next) {
   next();
 });
 
-app.get('/403', function(req, res, next){
-  err.status = 403;
-  next(new Error('not allowed!'));
+app.get('/403', function(req, res, next) {
+  next();
 });
 
-app.get('/500', function(req, res, next){
+app.get('/500', function(req, res, next) {
   next(new Error('something went wrong!'));
 });
 
