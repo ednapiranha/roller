@@ -33,10 +33,6 @@ define(['jquery'],
 
     if (data.isDeletable) {
       actionItem.addClass('delete');
-    } else if (data.isRepostByYou) {
-      actionItem.addClass('repost').addClass('on');
-    } else if (data.isRepostByOther) {
-      actionItem.addClass('repost');
     } else {
       actionItem = null;
     }
@@ -110,18 +106,6 @@ define(['jquery'],
     unlike: function(post) {
       remoteAction('/like/' + parseInt(post.data('id'), 10), 'DELETE', {}, function(data) {
         post.find('.heart').removeClass('on');
-      });
-    },
-
-    repost: function(post) {
-      remoteAction('/repost/' + parseInt(post.data('id'), 10), 'POST', {}, function(data) {
-        post.find('.repost').addClass('on');
-      });
-    },
-
-    unrepost: function(post) {
-      remoteAction('/repost/' + parseInt(post.data('id'), 10), 'DELETE', {}, function(data) {
-        post.find('.repost').removeClass('on');
       });
     }
   };

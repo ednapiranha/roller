@@ -116,11 +116,6 @@ header li {
     border: 1px solid #e4bfde;
 }
 
-.repost.on {
-    background-color: #2b80ac;
-    border: 1px solid #72cbfa;
-}
-
 header li:hover {
     background-color: #eee;
     border: 1px solid transparent;
@@ -259,11 +254,6 @@ p.meta img {
 .actions li.heart {
     background-image: url('/images/heart.png');
     background-position: 50% 65%;
-}
-
-.actions li.repost {
-    background-image: url('/images/repost.png');
-    background-position: 49% 50%;
 }
 
 .actions li.delete {

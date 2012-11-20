@@ -81,15 +81,6 @@ define(['jquery', 'persona', 'roller'],
           roller.like(self.closest('.post-item'));
         }
         break;
-
-      // repost / unrepost
-      case self.hasClass('repost'):
-        if (self.hasClass('on')) {
-          roller.unrepost(self.closest('.post-item'));
-        } else {
-          roller.repost(self.closest('.post-item'));
-        }
-        break;
     }
   });
 
