@@ -15,71 +15,77 @@ define(['jquery', 'persona', 'roller'],
   var form = $('form');
 
   body.on('click', function(ev) {
-    var self = $(ev.target);
+    var target = $(ev.target);
 
-    switch (true) {
+    switch (target[0].className) {
+      // trigger action menu
+      case 'actions':
+        if (target.hasClass('on')) {
+          target.removeClass('on');
+        } else {
+          target.addClass('on');
+        }
+        break;
+
+      // delete post
+      case 'delete':
+        roller.delete(target.closest('.post-item'));
+        break;
+
+      // close form
+      case 'close':
+        form.removeClass('on').addClass('off');
+        break;
+
+      // like / unlike
+      case 'heart':
+        if (target.hasClass('on')) {
+          roller.unlike(target.closest('.post-item'));
+        } else {
+          roller.like(target.closest('.post-item'));
+        }
+        break;
+    }
+  });
+
+  body.on('click', function(ev) {
+    var target = $(ev.target);
+
+    switch (target[0].id) {
       // persona login
-      case self.is('#login'):
+      case 'login':
         ev.preventDefault();
         persona.login();
         break;
 
       // persona logout
-      case self.is('#logout'):
+      case 'logout':
         ev.preventDefault();
         persona.logout();
         break;
 
-      // trigger action menu
-      case self.hasClass('actions'):
-        if (self.hasClass('on')) {
-          self.removeClass('on');
-        } else {
-          self.addClass('on');
-        }
-        break;
-
       // trigger text post
-      case self.is('#add-text'):
+      case 'add-text':
         form.find('input[name="message"]').get(0).type = 'text';
         form.find('select[name="type"]').val('text');
         form.addClass('on').removeClass('off');
         break;
 
       // trigger image post
-      case self.is('#add-image'):
+      case 'add-image':
         form.find('input[name="message"]').get(0).type = 'file';
         form.find('select[name="type"]').val('image');
         form.addClass('on').removeClass('off');
         break;
 
-      // delete post
-      case self.hasClass('delete'):
-        roller.delete(self.closest('.post-item'));
-        break;
-
-      // close form
-      case self.hasClass('close'):
-        form.removeClass('on').addClass('off');
-        break;
-
       // feed
-      case self.is('#feed'):
+      case 'feed':
         document.location.hash = '/';
         break;
 
       // likes
-      case self.is('#liked'):
+      case 'liked':
         document.location.hash = '/likes';
-        break;
-
-      // like / unlike
-      case self.hasClass('heart'):
-        if (self.hasClass('on')) {
-          roller.unlike(self.closest('.post-item'));
-        } else {
-          roller.like(self.closest('.post-item'));
-        }
         break;
     }
   });
