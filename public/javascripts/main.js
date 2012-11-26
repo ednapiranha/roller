@@ -17,7 +17,7 @@ define(['jquery', 'persona', 'roller'],
   body.on('click', function(ev) {
     var target = $(ev.target);
 
-    switch (target[0].className) {
+    switch (target.data('action')) {
       // trigger action menu
       case 'actions':
         if (target.hasClass('on')) {
@@ -43,6 +43,14 @@ define(['jquery', 'persona', 'roller'],
           roller.unlike(target.closest('.post-item'));
         } else {
           roller.like(target.closest('.post-item'));
+        }
+        break;
+
+      case 'actions':
+        if (target.hasClass('on')) {
+          target.removeClass('on');
+        } else {
+          target.addClass('on');
         }
         break;
     }

@@ -10,7 +10,8 @@ define(['jquery'],
     var roller = $('<li class="post-item" data-id="">' +
       '<a href="javascript:;" data-url="" class="roller-link">' +
       '<p class="meta"></p><div class="content"></div>' +
-      '<div class="actions"><ol><li class="heart"></li></ol></a></li>');
+      '<div class="actions" data-action="actions"><ol><li class="heart" data-action="heart">' +
+      '</li></ol></a></li>');
 
     roller.find('.mood').attr('style', 'background-image: url(' + data.mood + ')');
     roller.attr('data-id', data.id);
@@ -31,7 +32,9 @@ define(['jquery'],
     var actionItem = $('<li class=""></li>');
 
     if (data.isDeletable) {
-      actionItem.addClass('delete');
+      actionItem
+        .addClass('delete')
+        .attr('data-action', 'delete');
     } else {
       actionItem = null;
     }
