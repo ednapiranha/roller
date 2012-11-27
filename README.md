@@ -2,6 +2,8 @@
 
 A micro micro blog.
 
+[Detailed process](https://github.com/ednapiranha/roller/tree/master/doc/development_process.md)
+
 ## Installation instructions
 
 Clone the repository
