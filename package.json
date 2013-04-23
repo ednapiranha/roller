@@ -1,30 +1,30 @@
 {
   "name": "roller",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "engines": {
-    "node": ">= 0.6.17",
+    "node": ">= 0.8.14",
     "npm": "1.1.x"
   },
   "dependencies": {
-    "client-sessions": ">= 0.0.9",
-    "connect": ">= 2.5.4",
-    "express": ">= 2.5.11",
-    "jade": ">= 0.27.2",
-    "request": "git://github.com/mikeal/request.git",
-    "nconf": "git://github.com/flatiron/nconf.git",
-    "requirejs": ">= 2.1.0",
-    "hiredis": "0.1.14",
-    "redis": "0.7.2",
-    "express-persona": "0.0.7",
+    "client-sessions": "0.1.1",
+    "connect": "2.7.6",
+    "express": "3.1.0",
+    "jade": "0.28.2",
+    "nconf": "0.6.7",
+    "express-persona": "git://github.com/jbuck/express-persona.git",
+    "request": "2.16.6",
+    "requirejs": "2.1.5",
+    "hiredis": "0.1.15",
+    "redis": "0.8.3",
     "knox": "0.4.1",
     "gravatar": "1.0.6",
     "knox-mpu": ">= 0.0.4"
   },
   "devDependencies": {
-    "mocha": ">= 1.4.2",
-    "nock": ">= 0.13.4",
-    "should": ">= 1.1.1"
+    "mocha": ">= 1.8.1",
+    "should": ">= 1.2.2",
+    "nock": "0.17.3"
   },
   "scripts": {
     "test": "make test"
